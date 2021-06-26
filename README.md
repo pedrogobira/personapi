@@ -26,11 +26,8 @@ For detailed information on the API, the OpenAPI specification (OAS) for RESTful
 (web based) provided by the Swagger project. The swagger-ui can be accessed with `http://[your-domain]/swagger-ui.html`.
 With swagger-ui you will be able to consult and test the functionalities provided by this RESTful API.
 
-<br>
+Look below for a preview of Swagger.
 
 ![personapi](https://user-images.githubusercontent.com/64466694/123513082-81a24800-d661-11eb-9349-fb76f45a7afd.png)
-<center><sub>Preview of Swagger</sub></center>
-
-<br>
 
 For practicality, a JSON file with the API definitions is in the repository. Search for `api-docs.json`.
