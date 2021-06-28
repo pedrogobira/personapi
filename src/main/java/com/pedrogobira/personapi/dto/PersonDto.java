@@ -1,8 +1,10 @@
 package com.pedrogobira.personapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.pedrogobira.personapi.entities.Phone;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.Valid;
@@ -12,6 +14,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@Builder
+@AllArgsConstructor
 public class PersonDto {
 
     private Long id;
@@ -34,5 +38,5 @@ public class PersonDto {
     @NotEmpty
     @Valid
     @Size(min = 1, max = 3)
-    private List<Phone> phones;
+    private List<PhoneDto> phones;
 }
