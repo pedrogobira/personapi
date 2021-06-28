@@ -8,6 +8,7 @@ import com.pedrogobira.personapi.exception.NotFoundException;
 import com.pedrogobira.personapi.mapper.PersonMapper;
 import com.pedrogobira.personapi.repository.PersonRepository;
 import com.pedrogobira.personapi.util.MessageUtils;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,15 +18,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
     private final PersonMapper mapper = PersonMapper.INSTANCE;
     private final PersonRepository repository;
-
-    @Autowired
-    public PersonService(PersonRepository repository) {
-        this.repository = repository;
-    }
 
     @Transactional
     public ResponseMessageDto save(PersonDto dto) {
@@ -53,11 +50,11 @@ public class PersonService {
     }
 
     @Transactional
-    public ResponseMessageDto update(Long id, PersonDto dto){
-        verifyIfExists(id);
+    public ResponseMessageDto update(PersonDto dto){
+        verifyIfExists(dto.getId());
         Person person = mapper.toEntity(dto);
         repository.save(person);
-        return createResponseMessage("Person updated. CPF: ", person.getCpf());
+        return createResponseMessage("Person updated with CPF: ", person.getCpf());
     }
 
     private Person verifyIfExists(Long id) {
