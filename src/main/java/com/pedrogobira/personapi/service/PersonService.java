@@ -50,8 +50,9 @@ public class PersonService {
     }
 
     @Transactional
-    public ResponseMessageDto update(PersonDto dto){
-        verifyIfExists(dto.getId());
+    public ResponseMessageDto update(Long id, PersonDto dto) {
+        verifyIfExists(id);
+        dto.setId(id);
         Person person = mapper.toEntity(dto);
         repository.save(person);
         return createResponseMessage("Person updated with CPF: ", person.getCpf());

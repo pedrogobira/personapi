@@ -14,30 +14,30 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/people")
+@RequestMapping(value = "/api/v1/people")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
     private PersonService service;
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PersonDto>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseMessageDto> save(@RequestBody @Valid PersonDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseMessageDto> update(@RequestBody @Valid PersonDto dto) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(dto));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<PersonDto>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-    }
-
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonDto> findById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseMessageDto> update(@PathVariable Long id, @RequestBody @Valid PersonDto dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

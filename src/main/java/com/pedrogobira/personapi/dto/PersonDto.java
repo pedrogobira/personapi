@@ -16,6 +16,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PersonDto {
 
     private Long id;
