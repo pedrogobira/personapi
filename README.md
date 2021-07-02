@@ -24,7 +24,7 @@ Also, you can import the project to Eclipse, Intellij IDEA or another IDE which 
 
 For detailed information on the API, the OpenAPI specification (OAS) for RESTful APIs is used with the graphical interface
 (web based) provided by the Swagger project. The swagger-ui can be accessed with `http://[your-domain]/swagger-ui.html`.
-With swagger-ui you will be able to consult and test the functionalities provided by this RESTful API.
+With swagger-ui you will be able to consult and test the functionalities provided by this REST API.
 
 Look below for a preview of Swagger.
 
